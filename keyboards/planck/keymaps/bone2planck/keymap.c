@@ -1,8 +1,5 @@
 #pragma message "You may need to add LAYOUT_planck_grid to your keymap layers - see default for an example"
 #include "planck.h"
-#ifdef BACKLIGHT_ENABLE
-#include "backlight.h"
-#endif
 #include "keymap_german.h"
 
 // for intellisense, has to be commented for building
@@ -136,23 +133,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     { _______, DE_SQ2,  KC_F1,   KC_F2,   KC_F3,   KC_F10,  XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, _______ },
     { _______, _______, _______, XXXXXXX, _______, _______, _______, _______, XXXXXXX, _______, _______, _______ }
 }
-};
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-    // MACRODOWN only works in this function
-    switch (id) {
-    case 0:
-        if (record->event.pressed) {
-            register_code(KC_RSFT);
-#ifdef BACKLIGHT_ENABLE
-            backlight_step();
-#endif
-        }
-        else {
-            unregister_code(KC_RSFT);
-        }
-        break;
-    }
-    return MACRO_NONE;
 };
